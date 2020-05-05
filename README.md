@@ -1,6 +1,6 @@
 # shoppingCart
 
-This a django based app for implementing some basic functions of shopping cart like browsing products, searching products, appling filters over products and adding products to users cart.
+This a django based app for implementing some basic functions of shopping cart like browsing products, searching products, applying filters over products and adding products to users cart.
 
 # Clone the repository
 $ git clone https://github.com/gaurKrishna/shoppingCart.git
