@@ -1,0 +1,65 @@
+{% extends 'home/base.html' %}
+{% block title %}{{ product }}{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% if product.sample_picture1 %}
+                        <img src="{{ product.sample_picture1.url }}" class="img-responsive">
+                    {% else %}
+                        <h3>No sample image available to display</h3>
+                    {% endif %}
+                    <h1>{{ product.title }} <small>{{ product.genre }}</small></h1>
+                    <h2> Rs.{{ product.price }}</h2>
+                    <h3>
+                        {{ product.review_stars }} <span class="glyphicon glyphicon-star"></span><br>
+                    </h3>
+                    <form action="{% url 'home:add_to_cart'%}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}" />
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% if product.sample_picture2 %}
+            <div class="col-sm-8 col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="{{ product.sample_picture2.url }}" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if product.sample_picture3 %}
+            <div class="col-sm-12 col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="{{ product.sample_picture3.url }}" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>    
+
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                {{ product.description }}
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+{% endblock %}
